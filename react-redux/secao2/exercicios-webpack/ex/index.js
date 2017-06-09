@@ -1,7 +1,6 @@
-//Todo conteudo contido neste arquivo estara disponivel para o bundle.js
+//Executando o webpack manualmente./node_modules/.bin/webpack
 
-console.log("Funcionando.................")
-
-const logger = require("./logger")
-
-logger.info("Exportando com o CommnsJS")
+//Arquivos que nao sao referenciados pelo index.js, nao sao empacotados pelo webpack
+//Se somente fizermos referencia ao arquivo mais nao usa-lo, o arquivo sera carregado
+//pelo webpack do mesmo jeito, mas se nao houver referencia o webpack nao gerencia
+require('./duvidaCruel')
