@@ -1,7 +1,16 @@
-//Para que possamos usar o import, tivemos que configurar para o babel realizar o parse para
-//um codigo legivel pelo browser
-import Pessoa from './Pessoa'
+const produto = {
+    nome: 'Caneta Azul',
+    preco: 2,
+    qtde: 3
+}
 
-const pessoa = new Pessoa('Jhonatan Kolen Alves Viana, isso DFPPPFPPFPFP.................................')
+//O spread operator clona um objeto, separando todos os atributos do objeto a ser clonado
+//E criando um outro com os mesmos valores, mas objetos diferentes
+function clone(objeto) {
+    return { ...objeto }
+}
 
-console.log(pessoa.toString())
+const novoProduto = clone(produto);
+novoProduto.nome = 'Caneta Preta'
+
+console.log(produto, novoProduto);
