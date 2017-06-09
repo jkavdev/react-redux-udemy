@@ -16,15 +16,15 @@ module.exports = {
         contentBase: './public'
     },
     //Configuracao para o parse para codigo legivel pelo browser com babel
+    //Adicionando plugin para compilacao do spread operator
     module: {
         loaders: [{
             test: /.js?$/,
             exclude: ['/node_modules'],
             loader: 'babel-loader',
             query: {
-                presets: [
-                    ['es2015']
-                ],
+                presets: ['es2015'],
+                plugins: ["transform-object-rest-spread"]
             },
         }]
     }
