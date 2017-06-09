@@ -1,16 +1,12 @@
-const produto = {
-    nome: 'Caneta Azul',
-    preco: 2,
-    qtde: 3
-}
+//Para a utilizacao do react, precisamos configurar o preset para o babel reconhecer a sintaxe do react
+//e baixamos o react em sim
+//import vindo do noe_modules
+import 'react'
 
-//O spread operator clona um objeto, separando todos os atributos do objeto a ser clonado
-//E criando um outro com os mesmos valores, mas objetos diferentes
-function clone(objeto) {
-    return { ...objeto }
-}
+//<h1>Nice......</h1> SINTAXE DO REACT
+export default props => (
+    <h1>Nice......</h1>
+)
 
-const novoProduto = clone(produto);
-novoProduto.nome = 'Caneta Preta'
-
-console.log(produto, novoProduto);
+//Tem que apresentar esta mensagem, indicando que o comando acima foi compilado
+console.log('Olha ae o React, ....................')
