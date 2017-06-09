@@ -7,12 +7,25 @@ module.exports = {
     entry: './ex/index.js',
     //Configuracao de saida do webpack, arquivo que sera gerado 
     output: {
-        path: __dirname + '/public', 
+        path: __dirname + '/public',
         filename: './bundle.js'
     },
     //Configuracao do servidor
     devServer: {
         port: 8080,
         contentBase: './public'
+    },
+    //Configuracao para o parse para codigo legivel pelo browser com babel
+    module: {
+        loaders: [{
+            test: /.js?$/,
+            exclude: ['/node_modules'],
+            loader: 'babel-loader',
+            query: {
+                presets: [
+                    ['es2015']
+                ],
+            },
+        }]
     }
 }

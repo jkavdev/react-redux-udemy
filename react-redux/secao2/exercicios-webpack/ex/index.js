@@ -1,8 +1,7 @@
-//Os navegadores ainda nao suportam o import
-//Precisamos de alguem que faca esta conversao
-//Para um codigo legivel para o browser
+//Para que possamos usar o import, tivemos que configurar para o babel realizar o parse para
+//um codigo legivel pelo browser
 import Pessoa from './Pessoa'
 
-const pessoa = new Pessoa("Jhonatan");
+const pessoa = new Pessoa('Jhonatan Kolen Alves Viana, isso DFPPPFPPFPFP.................................')
 
-console.log(pessoa.toString());
+console.log(pessoa.toString())
