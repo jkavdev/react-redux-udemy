@@ -1,5 +1,7 @@
 //realizando referencia ao dos modulos webpack
 const webpack = require('webpack')
+//Plugin para o gerenciamento do css
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 //Cofiguracao do webpack, tornando visivel o que configuramos    
 module.exports = {
@@ -15,8 +17,13 @@ module.exports = {
         port: 8080,
         contentBase: './public'
     },
+    //arquivo a ser gerado
+    plugins: [
+        new ExtractTextPlugin('app.css')
+    ],
     //Configuracao para o parse para codigo legivel pelo browser com babel
     //Adicionando plugin para compilacao do spread operator
+    //Adicionado plugin para o carregamento do css
     module: {
         loaders: [{
             test: /.js?$/,
@@ -26,6 +33,10 @@ module.exports = {
                 presets: ['es2015', 'react'],
                 plugins: ["transform-object-rest-spread"]
             },
+        },
+        {
+            test: /.css$/,
+            loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
         }]
     }
 }
