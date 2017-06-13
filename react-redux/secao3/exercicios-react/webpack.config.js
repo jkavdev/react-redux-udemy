@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 
+//resolve - indicamos para o webpack pra resolver caso nao informamos a extensao do arquivo
 module.exports = {
     entry: './ex/index.jsx',
     output: {
@@ -9,6 +10,9 @@ module.exports = {
     devServer: {
         port: 8080,
         contentBase: './public'
+    },
+    resolve: {
+        extensions: ['', '.js', '.jsx']
     },
     module: {
         loaders: [{
