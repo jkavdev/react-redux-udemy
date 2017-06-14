@@ -9,6 +9,5 @@ ReactDOM.render(
         <Member name='Maria' />
         <Member name='Lucas' />
         <Member name='Douglas' />
-        <Member name='Adriane' />
     </Family>
     , document.getElementById('app'))
