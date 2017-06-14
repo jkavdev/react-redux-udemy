@@ -16,3 +16,6 @@ server.use(bodyParser.json())
 server.listen(port, function () {
     console.log(`BACKEND is running on port ${port}`)
 })
+
+//exportando o servidor pois podemos usa-lo para registro das rotas
+module.exports = server

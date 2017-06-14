@@ -1,4 +1,4 @@
-const restful = require('./node-restful')
+const restful = require('node-restful')
 //api rest para trabalhar com o mongoose
 const mongoose = restful.mongoose
 
