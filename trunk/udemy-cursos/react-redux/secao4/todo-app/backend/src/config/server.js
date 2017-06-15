@@ -7,10 +7,13 @@ const bodyParser = require('body-parser')
 const express = require('express')
 //criando instancia do servidor
 const server = express()
+//permitindo o cors
+const allowCors = require('./cors')
 
 //aplicando os midlewares para cada requisicao realizado
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
+server.use(allowCors)
 
 //atribuindo a porta ao servido e apresentando mensagem de sucesso
 server.listen(port, function () {
