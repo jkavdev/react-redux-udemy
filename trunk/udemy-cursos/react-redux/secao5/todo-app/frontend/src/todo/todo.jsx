@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+
 import PageHeader from '../template/pageHeader'
 import TodoList from './todoList'
 import TodoForm from './todoForm'
+
+const URL = 'http://localhost:3003/api/todos'
 
 export default class Todo extends Component {
 
@@ -20,8 +24,13 @@ export default class Todo extends Component {
         this.setState({ ...this.state, description: e.target.value})
     }
 
+    //Cadastrando a tarefa
     handleAdd() {
-        console.log(this.state.description)
+        const description = this.state.description
+        //usando o axios para o cadastro
+        //ele recebe a url, os dados a irem no servico, e uma funcao de callback
+        axios.post(URL, {description})
+            .then(resp => console.log('Cadastrou a tarefa........'))
     }
 
     render() {
