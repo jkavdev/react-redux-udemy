@@ -21,6 +21,7 @@ export default class Todo extends Component {
         this.handleMarkAsDone = this.handleMarkAsDone.bind(this)
         this.handleMarkAsPending = this.handleMarkAsPending.bind(this)
         this.handleSearch = this.handleSearch.bind(this)
+        this.handleClear = this.handleClear.bind(this)
 
         this.refresh()
     }
@@ -75,17 +76,23 @@ export default class Todo extends Component {
             .then(resp => this.refresh(this.state.description))
     }
 
+    //delega para refresh, pois refresh tambem limpa o campo de busca e traz os resultados novamente
+    handleClear() {
+        this.refresh()
+    }
+
     render() {
         return (
             <div>
                 <PageHeader name='Tarefas' small='Cadastro'></PageHeader>
 
-                <TodoForm 
+                <TodoForm
                     description={this.state.description}
                     handleAdd={this.handleAdd}
-                    handleChange={this.handleChange} 
-                    handleSearch={this.handleSearch}/>
-                <TodoList 
+                    handleChange={this.handleChange}
+                    handleSearch={this.handleSearch}
+                    handleClear={this.handleClear} />
+                <TodoList
                     list={this.state.list}
                     handleMarkAsDone={this.handleMarkAsDone}
                     handleMarkAsPending={this.handleMarkAsPending}
