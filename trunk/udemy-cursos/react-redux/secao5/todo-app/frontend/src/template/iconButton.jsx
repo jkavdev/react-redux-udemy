@@ -6,7 +6,7 @@ export default props => (
     //Utilizando o componente if, se hide=true, nao mostra botao e vice-versa
     <If test={!props.hide}>
         <button className={'btn btn-' + props.style}
-            onClick={onclick}>
+            onClick={props.onClick}>
             <i className={'fa fa-' + props.icon}></i>
         </button >
     </If>
