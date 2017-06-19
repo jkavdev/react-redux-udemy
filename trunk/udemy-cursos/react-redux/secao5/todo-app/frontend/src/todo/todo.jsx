@@ -17,11 +17,20 @@ export default class Todo extends Component {
         //precisamos ligar o contexto da funcao com o contexto do componente
         this.handleChange = this.handleChange.bind(this)
         this.handleAdd = this.handleAdd.bind(this)
+        this.handleRemove = this.handleRemove.bind(this)
+
+        this.refresh()
+    }
+
+    //atualiza o estado do componente lista e descricacao, utilizado no inicio do render, e como callback de outras funcoes
+    refresh() {
+        axios.get(`${URL}?sort=-createdAt`)
+            .then(resp => this.setState({ ...this.state, description: '', list: resp.data }))
     }
 
     //Alterando o estado do componente de acordo com os valores atualizados passados pelo evento
     handleChange(e) {
-        this.setState({ ...this.state, description: e.target.value})
+        this.setState({ ...this.state, description: e.target.value })
     }
 
     //Cadastrando a tarefa
@@ -29,8 +38,14 @@ export default class Todo extends Component {
         const description = this.state.description
         //usando o axios para o cadastro
         //ele recebe a url, os dados a irem no servico, e uma funcao de callback
-        axios.post(URL, {description})
-            .then(resp => console.log('Cadastrou a tarefa........'))
+        axios.post(URL, { description })
+            .then(resp => this.refresh())
+    }
+
+    //removendo as tarefas passando o todo com o id
+    handleRemove(todo) {
+        axios.delete(`${URL}/${todo._id}`)
+            .then(resp => this.refresh())
     }
 
     render() {
@@ -41,7 +56,8 @@ export default class Todo extends Component {
                 <TodoForm description={this.state.description}
                     handleAdd={this.handleAdd}
                     handleChange={this.handleChange} />
-                <TodoList />
+                <TodoList list={this.state.list}
+                    handleRemove={this.handleRemove}/>
             </div>
         )
     }
