@@ -8,15 +8,15 @@ import { combineReducers, createStore } from 'redux'
 //Componente que liga os estados criados com o redux para os componentes do react
 import { Provider } from 'react-redux'
 
+//reducer do field
+import fieldReducer from './fieldReducer'
+
 //ligando os reducers com os campos
 //um campo sempre eh ligado a um reducer
 //reducer - uma funcao
 const reducers = combineReducers({
-    field: () => {
-        //confirando que o reducer esta sendo chamado
-        console.log('reducer chamado....')
-        return { value: 'Opa' }
-    }
+    //utilizando o reducer do field
+    field: fieldReducer
 })
 
 ReactDOM.render(
