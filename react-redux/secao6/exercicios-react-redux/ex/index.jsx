@@ -12,7 +12,11 @@ import { Provider } from 'react-redux'
 //um campo sempre eh ligado a um reducer
 //reducer - uma funcao
 const reducers = combineReducers({
-    field: () => ({ value: 'Opa' })
+    field: () => {
+        //confirando que o reducer esta sendo chamado
+        console.log('reducer chamado....')
+        return { value: 'Opa' }
+    }
 })
 
 ReactDOM.render(
