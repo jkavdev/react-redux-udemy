@@ -1,36 +1,26 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-export default class Field extends Component {
-
-    constructor(props) {
-        super(props)
-        //atribuindo propriedade do componente ao estado do componente
-        this.state = { value: props.initialValue }
-
-        //dizemos que este eh um componente nao controlado
-        // this.state = { value: null }
-
-        //por isso quando devemos limpar o estado de um campo usamos o '' ou undefined
-        // this.state = { value: '' }
-        // this.state = { value: undefined }
-
-        //atribuindo o contexto do Field a funcao handleChange
-        this.handleChange = this.handleChange.bind(this)
-    }
-
-    //Funcao que recebe o evento do input, o input em si
-    handleChange(event) {
-        //atribuindo valor do input ao estado do label
-        this.setState({ value: event.target.value })
-    }
-
+class Field extends Component {
     render() {
         return (
             <div>
-                <label>{this.state.value}</label><br />
-                {/*Queremos que a funcao seja executado por isso passamos ela*/}
-                <input onChange={this.handleChange} value={this.state.value}/>
+                <label>{this.props.value}</label><br />
+                <input onChange={this.handleChange} value={this.props.value} />
             </div>
         )
     }
 }
+
+//Metodo que ligara o estado do reduce para os props do componente
+function mapStateToProps(state) {
+    //este state, eh o state do reduce declarado no combineReducers
+    return {
+        value: state.field.value
+    }
+}
+
+//O connect recebe o metodo de parse dos atributos e um componente
+//E retorna o componente recebido com todos os atributos mapeados pelo stateToProps para o 
+//props do componente
+export default connect(mapStateToProps)(Field)
