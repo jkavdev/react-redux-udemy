@@ -1,9 +1,18 @@
-import React from 'react';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Field from './field'
 
-const Counter = props => {
-    return (
-        <div>OK</div>
-    );
-};
+import { combineReducers, createStore } from 'redux'
+import { Provider } from 'react-redux'
 
-export default Counter;
+import fieldReducer from './fieldReducer'
+
+const reducers = combineReducers({
+    field: fieldReducer
+})
+
+ReactDOM.render(
+    <Provider store={createStore(reducers)}>
+        <Field initialValue='Testai' />
+    </Provider>,
+    document.getElementById('app'))
