@@ -1,25 +1,9 @@
 import { combineReducers } from 'redux'
+import todoReducer from '../todo/todoReducer'
 
 //reducer que enblogabara todos os reducer da aplicao
 const rootReducer = combineReducers({
-	todo: () => ({
-		description: 'Ler Livro',
-		list: [{
-			_id: 1,
-			description: 'Pagar fatura do cartão',
-			done: true
-		},
-		{
-			_id: 2,
-			description: 'Jogar games irados',
-			done: false
-		},
-		{
-			_id: 3,
-			description: 'Consulta na terça',
-			done: false
-		},]
-	})
+	todo: todoReducer
 })
 
 export default rootReducer
