@@ -1,5 +1,5 @@
 //valor inicial do estado 
-const INITIAL_STATE = { step: 1, number: 0 }
+const INITIAL_STATE = { step: 10, number: 0 }
 
 //caso o estado esteja undefined, atribui o valor inicial
 export default function (state = INITIAL_STATE, action) {
@@ -12,7 +12,7 @@ export default function (state = INITIAL_STATE, action) {
             return { ...state, number: state.number - state.step }
         //altera o valor do step
         case 'STEP_CHANGED':
-            return { ...state, step: action.payload }
+            return { ...state, step: +action.payload }
         //se nao retorna o estado como estava, sem evolucao
         default:
             return state

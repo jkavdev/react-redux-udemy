@@ -6,7 +6,7 @@ import { inc, dec, stepChanged } from './counterActions'
 const Counter = props => (
     <div>
         <h1>{props.counter.number}</h1>
-        <input onChange={props.counter.stepChanged}
+        <input onChange={props.stepChanged}
             value={props.counter.step} type="number" />
         <button onClick={props.dec}>Dec</button>
         <button onClick={props.inc}>Inc</button>
@@ -14,6 +14,8 @@ const Counter = props => (
 )
 
 const maptStateToProps = state => ({ counter: state.counter })
-const mapDispatchToProps = dispatch => ({ inc, dec, stepChanged }, dispatch)
+
+//Os metodos serao mapeados para o props e nao para o reducer, como o que acontece com as propriedades
+const mapDispatchToProps = dispatch => bindActionCreators({ inc, dec, stepChanged }, dispatch)
 
 export default connect(maptStateToProps, mapDispatchToProps)(Counter)
