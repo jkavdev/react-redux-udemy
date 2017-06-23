@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
 			done: true
 		},
 		{
-			_id: 3,
+			_id: 2,
 			description: 'Jogar games irados',
 			done: false
 		},
