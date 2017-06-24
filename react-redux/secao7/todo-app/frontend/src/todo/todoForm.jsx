@@ -1,10 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
+//Ligara as actions as reducers
 import { bindActionCreators } from 'redux'
 
 import Grid from '../template/grid'
 import IconButton from '../template/iconButton'
 
+//As actions do componente
 import { changeDescription } from './todoActions'
 
 const TodoForm = props => {
@@ -37,6 +39,7 @@ const TodoForm = props => {
 }
 
 const mapStateToProps = state => ({ description: state.todo.description })
+//Atraves do dispatch que realizara as chamadas para a ligacao dos reducers
 const mapDispatchToPros = dispath => bindActionCreators({ changeDescription }, dispath)
 
 export default connect(mapStateToProps, mapDispatchToPros)(TodoForm)
