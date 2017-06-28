@@ -20,10 +20,8 @@ export const search = () => {
 }
 
 //Realiza um post com a descricao e retorna uma promise
+//Agora com a ajuda do midleware multi podemos executar mais de um dispatch, apenas informando um array
 export const add = (description) => {
     const request = axios.post(URL, { description })
-    return {
-        type: 'TODO_ADDED',
-        payload: request
-    }
+    return [{ type: 'TODO_ADDED', payload: request }, search()]
 }

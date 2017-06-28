@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom'
 //applyMiddleware - responsavel pelo recebimento dos dados das chamadas dos metodos sincronos e assincronos
 import { applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'
+
 //promise do redux
 import promise from 'redux-promise'
+//multi para multiplos dispatches
+import multi from 'redux-multi'
 
 import App from './main/app'
 //Reducers da aplicacao
@@ -15,7 +18,7 @@ const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
     && window.__REDUX_DEVTOOLS_EXTENSION__()
 
 //criacao do store
-const store = applyMiddleware(promise)(createStore)(reducers, devTools)
+const store = applyMiddleware(promise, multi)(createStore)(reducers, devTools)
 
 ReactDOM.render(
     //aplicando o connector do redux para os componentes do react
