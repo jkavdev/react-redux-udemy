@@ -7,13 +7,13 @@ import Grid from '../template/grid'
 import IconButton from '../template/iconButton'
 
 //As actions do componente
-import { changeDescription, search } from './todoActions'
+import { add, changeDescription, search } from './todoActions'
 
 class TodoForm extends Component {
   constructor(props) {
     super(props)
 
-    this.keyHandler = this.keyHandler.bind()
+    this.keyHandler = this.keyHandler.bind(this)
   }
 
   //Utilizando o ciclo de vida do react
@@ -23,14 +23,20 @@ class TodoForm extends Component {
   }
 
   keyHandler(e) {
+    //Utiliizando feature destructuring do es6
+    //no qual estamos extraimos os seguintes propriedades de this.props
+    const { add, search, description } = this.props
+
     if (e.key === 'Enter') {
-      e.shiftKey ? this.props.handleSearch() : this.props.handleAdd()
+      e.shiftKey ? search() : add(description)
     } else if (e.key === 'Escape') {
-      this.props.handleClear()
+      props.handleClear()
     }
   }
 
   render() {
+    const { add, search, description } = this.props
+
     return (
       <div role='form' className='todoForm'>
         <Grid cols='12 9 10'>
@@ -42,8 +48,8 @@ class TodoForm extends Component {
         </Grid>
 
         <Grid cols='12 3 2'>
-          <IconButton style='primary' icon='plus' onClick={this.props.handleAdd} alt='Enter'></IconButton>
-          <IconButton style='info' icon='search' onClick={this.props.handleSearch} alt='Enter + Shift'></IconButton>
+          <IconButton style='primary' icon='plus' onClick={() => add(description)} alt='Enter'></IconButton>
+          <IconButton style='info' icon='search' onClick={() => search()} alt='Enter + Shift'></IconButton>
           <IconButton style='clear' icon='close' onClick={this.props.handleClear} alt='Esc'></IconButton>
         </Grid>
       </div>
@@ -53,6 +59,6 @@ class TodoForm extends Component {
 
 const mapStateToProps = state => ({ description: state.todo.description })
 //Atraves do dispatch que realizara as chamadas para a ligacao dos reducers
-const mapDispatchToPros = dispath => bindActionCreators({ changeDescription, search }, dispath)
+const mapDispatchToPros = dispatch => bindActionCreators({ add, changeDescription, search }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToPros)(TodoForm)

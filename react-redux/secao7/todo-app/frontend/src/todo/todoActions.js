@@ -18,3 +18,12 @@ export const search = () => {
         payload: request
     }
 }
+
+//Realiza um post com a descricao e retorna uma promise
+export const add = (description) => {
+    const request = axios.post(URL, { description })
+    return {
+        type: 'TODO_ADDED',
+        payload: request
+    }
+}
