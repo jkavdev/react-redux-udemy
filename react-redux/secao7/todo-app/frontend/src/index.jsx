@@ -8,6 +8,9 @@ import { Provider } from 'react-redux'
 import promise from 'redux-promise'
 //multi para multiplos dispatches
 import multi from 'redux-multi'
+//thunk possibilitara dispatcher encadeados, 
+//sendo possivel utilizar o recurso de promises e depois executar um outro dispatcher
+import thunk from 'redux-thunk'
 
 import App from './main/app'
 //Reducers da aplicacao
@@ -18,7 +21,7 @@ const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
     && window.__REDUX_DEVTOOLS_EXTENSION__()
 
 //criacao do store
-const store = applyMiddleware(promise, multi)(createStore)(reducers, devTools)
+const store = applyMiddleware(thunk, promise, multi)(createStore)(reducers, devTools)
 
 ReactDOM.render(
     //aplicando o connector do redux para os componentes do react
