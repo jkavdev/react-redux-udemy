@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-//Componente para determinar qual grid usara, passando os numeros
-//para os respectivos dispositivos
 export default class Grid extends Component {
 
   toCssClasses(numbers) {
@@ -17,8 +15,6 @@ export default class Grid extends Component {
   }
 
   render() {
-    //Se nao houver nenhuma grid informada
-    //aplica o tamanho da coluna para 12, preenche toda a tela
     const gridClasses = this.toCssClasses(this.props.cols || 12)
     return (
       <div className={gridClasses}>
