@@ -28,7 +28,8 @@ export const add = (description) => {
     axios.post(URL, { description })
       //executando metodo da promise
       //ele recebe um callback, e nela disparamos outra acao
-      .then(resp => dispatch({ type: 'TODO_ADDED', payload: resp.data }))
+      //substituindo pelo acao de limpar, que faz mais sentido do que incluido
+      .then(resp => dispatch(clear()))
       //executando outra promise e disparando outra acao
       .then(resp => dispatch(search()))
   }
@@ -61,4 +62,9 @@ export const remove = (todo) => {
     axios.delete(`${URL}/${todo._id}`)
       .then(resp => dispatch(search()))
   }
+}
+
+//limpa o campo descricao apenas
+export const clear = () => {
+  return { type: 'TODO_CLEAR' }
 }
