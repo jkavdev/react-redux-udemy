@@ -40,7 +40,7 @@ export const markAsDone = (todo) => {
   //executa uma funcao passando um dispatch
   return dispatch => {
     axios.put(`${URL}/${todo._id}`, { ...todo, done: true })
-    //ao finalizar alteracao, outro dispatch para busca
+      //ao finalizar alteracao, outro dispatch para busca
       .then(resp => dispatch(search()))
   }
 }
@@ -49,6 +49,16 @@ export const markAsDone = (todo) => {
 export const markAsPending = (todo) => {
   return dispatch => {
     axios.put(`${URL}/${todo._id}`, { ...todo, done: false })
+      .then(resp => dispatch(search()))
+  }
+}
+
+//removendo tarefa
+//como nas acoes acima de alteracao, nao precisamos ter um reducer interessado nestas operacoes de exclusao e alteracao
+//entao temos apenas o reducer do search sendo invocado
+export const remove = (todo) => {
+  return dispatch => {
+    axios.delete(`${URL}/${todo._id}`)
       .then(resp => dispatch(search()))
   }
 }
