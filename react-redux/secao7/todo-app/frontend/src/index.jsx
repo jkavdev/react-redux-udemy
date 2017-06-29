@@ -18,14 +18,14 @@ import reducers from './main/reducers'
 
 //Configurando o plugin do redux em sincronismo com a aplicacao
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
-    && window.__REDUX_DEVTOOLS_EXTENSION__()
+  && window.__REDUX_DEVTOOLS_EXTENSION__()
 
 //criacao do store
 const store = applyMiddleware(thunk, promise, multi)(createStore)(reducers, devTools)
 
 ReactDOM.render(
-    //aplicando o connector do redux para os componentes do react
-    <Provider store={store}>
-        <App />
-    </Provider>
-    , document.getElementById('app'))
+  //aplicando o connector do redux para os componentes do react
+  <Provider store={store}>
+    <App />
+  </Provider>
+  , document.getElementById('app'))

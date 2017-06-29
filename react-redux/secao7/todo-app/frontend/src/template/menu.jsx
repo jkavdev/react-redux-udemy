@@ -1,20 +1,20 @@
 import React from 'react'
 
 export default props => (
-    <div className='navbar navbar-inverse bg-inverse'>
-        <div className='container'>
-            <div className='navbar-header'>
-                <a className='navbar-brand' href="#">
-                    <i className='fa fa-calendar-check-o'></i>Todo App
-                </a>
-            </div>
+  <div className='navbar navbar-inverse bg-inverse'>
+    <div className='container'>
+      <div className='navbar-header'>
+        <a className='navbar-brand' href="#">
+          <i className='fa fa-calendar-check-o'></i>Todo App
+        </a>
+      </div>
 
-            <div id='navbar' className='navbar-collapse collapse'>
-                <ul className='nav navbar-nav'>
-                    <li><a href="#/todo">Tarefas</a></li>
-                    <li><a href="#/about">Sobre</a></li>
-                </ul>
-            </div>
-        </div>
+      <div id='navbar' className='navbar-collapse collapse'>
+        <ul className='nav navbar-nav'>
+          <li><a href="#/todo">Tarefas</a></li>
+          <li><a href="#/about">Sobre</a></li>
+        </ul>
+      </div>
     </div>
+  </div>
 )
