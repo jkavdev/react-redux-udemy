@@ -12,11 +12,19 @@ export const changeDescription = event => ({
 //Como estamos utilizado o axios, estamos realizando uma chamada assincrona
 //Por isso nao da tempo de buscar os resultados e atribuir ao request
 export const search = () => {
-  const request = axios.get(`${URL}?sort-=createdAt`)
-  return {
-    type: 'TODO_SEARCHED',
-    payload: request
+  //middleware thunk
+  return (dispatch, getState) => {
+    //botendo propriedade do state, nao recomendado, fizemos pois se nao teriamos que explicitar o description para
+    //todo as chamadas de search
+    const description = getState().todo.description
+    debugger
+    const search = description ? `&description__regex=/${description}/` : ''
+    const request = axios.get(`${URL}?sort-=createdAt${search}`)
+      //nao preciso mais acessar o data no reducer
+      //ja tenho ele pronto nesta promise e mandaremos o que veio para o reducer
+      .then(resp => dispatch({ type: 'TODO_SEARCHED', payload: resp.data }))
   }
+
 }
 
 //Realiza um post com a descricao e retorna uma promise
@@ -65,6 +73,7 @@ export const remove = (todo) => {
 }
 
 //limpa o campo descricao apenas
+//ao limpar tambem realizaremos uma consulta
 export const clear = () => {
-  return { type: 'TODO_CLEAR' }
+  return [{ type: 'TODO_CLEAR' }, search()]
 }
