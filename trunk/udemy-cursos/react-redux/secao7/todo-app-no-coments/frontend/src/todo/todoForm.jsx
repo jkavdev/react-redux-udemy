@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-//Ligara as actions as reducers
 import { bindActionCreators } from 'redux'
 
 import Grid from '../template/grid'
 import IconButton from '../template/iconButton'
 
-//As actions do componente
 import { add, changeDescription, search, clear } from './todoActions'
 
 class TodoForm extends Component {
@@ -16,15 +14,11 @@ class TodoForm extends Component {
     this.keyHandler = this.keyHandler.bind(this)
   }
 
-  //Utilizando o ciclo de vida do react
-  //este metodo sera chamado antes do componente ser renderizado
   componenteWillMount() {
     this.props.search()
   }
 
   keyHandler(e) {
-    //Utiliizando feature destructuring do es6
-    //no qual estamos extraimos os seguintes propriedades de this.props
     const { add, search, description, clear } = this.props
 
     if (e.key === 'Enter') {
@@ -58,7 +52,6 @@ class TodoForm extends Component {
 }
 
 const mapStateToProps = state => ({ description: state.todo.description })
-//Atraves do dispatch que realizara as chamadas para a ligacao dos reducers
 const mapDispatchToPros = dispatch => bindActionCreators({ add, changeDescription, search, clear }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToPros)(TodoForm)
