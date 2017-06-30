@@ -10,9 +10,13 @@ const express = require('express')
 //criando instancia do servidor
 const server = express()
 
+//definição de acessos a nossa api
+const allowCors = require('./cors')
+
 //aplicando os midlewares para cada requisicao realizado
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
+server.use(allowCors)
 
 //atribuindo a porta ao servido e apresentando mensagem de sucesso
 server.listen(port, function () {
